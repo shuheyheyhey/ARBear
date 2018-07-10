@@ -144,13 +144,12 @@ class MicInput {
     }
     
     
-    let recordingCallback: AURenderCallback = { (
-        inRefCon,
-        ioActionFlags,
-        inTimeStamp,
-        inBusNumber,
-        frameCount,
-        ioData ) -> OSStatus in
+    let recordingCallback: AURenderCallback = {(inRefCon,
+                                                ioActionFlags,
+                                                inTimeStamp,
+                                                inBusNumber,
+                                                frameCount,
+                                                ioData ) -> OSStatus in
         
         let audioObject = unsafeBitCast(inRefCon, to: MicInput.self)
         
@@ -165,17 +164,17 @@ class MicInput {
         }
         let inputDataPtr = UnsafeMutableAudioBufferListPointer(&audioObject.audioBufferList!)
         let mBuffers: AudioBuffer = inputDataPtr[0]
-        let bufferPointer = UnsafeMutableRawPointer(mBuffers.mData)
-        if let bptr = bufferPointer {
-            let dataArray = bptr.assumingMemoryBound(to: Float.self)
-            // マイクから取得したデータからRMS(RootMeanSquare)レベルを計算する
-            var sum:Float = 0.0
-            if frameCount > 0 {
-                for i in 0 ..< Int(frameCount) {
-                    sum += (dataArray[i]*dataArray[i])
-                }
-                audioObject.level = sqrt(sum / Float(frameCount))
+        guard let bufferPointer = UnsafeMutableRawPointer(mBuffers.mData) else {
+            return -1;
+        }
+        let dataArray = bufferPointer.assumingMemoryBound(to: Float.self)
+        // マイクから取得したデータからレベルを計算する
+        var sum:Float = 0.0
+        if frameCount > 0 {
+            for i in 0 ..< Int(frameCount) {
+                sum += (dataArray[i]*dataArray[i])
             }
+            audioObject.level = sqrt(sum / Float(frameCount))
         }
         return 0
     }
