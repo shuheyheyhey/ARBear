@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
 
@@ -116,8 +116,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             char.dance()
         }
     }
+}
 
-    // MARK: - ARSCNViewDelegate
+// MARK: - ARSCNViewDelegate
+extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         print("didAdd")
         if let planeAnchor = anchor as? ARPlaneAnchor {
@@ -136,8 +138,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             planeNode.update(anchor: planeAnchor)
         }
     }
+}
 
-    // MARK: - SCNPhysicsContactDelegate
+// MARK: - SCNPhysicsContactDelegate
+extension ViewController: SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         guard let char = self.characterNode else {
             return
