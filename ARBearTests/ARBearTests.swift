@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ARTest
+@testable import ARBear
 
 class ARBearTests: XCTestCase {
 
