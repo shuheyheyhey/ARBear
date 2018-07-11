@@ -27,19 +27,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         super.viewDidLoad()
         
         // Set the view's delegate
-        sceneView.delegate = self
-        sceneView.scene = SCNScene();
+        self.sceneView.delegate = self
+        self.sceneView.scene = SCNScene();
 
-        sceneView.scene.physicsWorld.contactDelegate = self;
+        self.sceneView.scene.physicsWorld.contactDelegate = self;
         
-        // Show statistics such as fps and timing information
-        //sceneView.showsStatistics = true
+        self.sceneView.autoenablesDefaultLighting = true
 
-        //sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
-
-        sceneView.autoenablesDefaultLighting = true
-
-        registerGestureRecognizer();
+        self.registerGestureRecognizer();
         // Set the scene to the view
         //sceneView.scene = scene
         self.setUpMic()
@@ -49,15 +44,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // 平面検出の有効化
-        configuration.planeDetection = .horizontal
-        sceneView.session.run(configuration)
+        self.configuration.planeDetection = .horizontal
+        self.sceneView.session.run(self.configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-        sceneView.session.pause()
+        self.sceneView.session.pause()
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,19 +61,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     }
     
     private func registerGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        sceneView.addGestureRecognizer(tapGestureRecognizer)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapped))
+        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     @objc func tapped(sender: UITapGestureRecognizer) {
         // すでに追加済みであれば無視
-        if (characterNode != nil) {
-            return;
+        if self.characterNode != nil {
+            return
         }
         // タップされた位置を取得する
-        let tapLocation = sender.location(in: sceneView)
+        let tapLocation = sender.location(in: self.sceneView)
         // タップされた位置のARアンカーを探す
-        let hitTest = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        let hitTest = self.sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         if !hitTest.isEmpty {
             // タップした箇所が取得できていればitemを追加
             self.addItem(hitTestResult: hitTest.first!)
@@ -86,8 +81,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     }
     
     private func addItem(hitTestResult: ARHitTestResult) {
-        characterNode = CharacterNode(hitTestResult: hitTestResult)
-        sceneView.scene.rootNode.addChildNode(characterNode!);
+        self.characterNode = CharacterNode(hitTestResult: hitTestResult)
+        self.sceneView.scene.rootNode.addChildNode(self.characterNode!)
     }
     
     private func setUpMic() {
@@ -105,7 +100,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
         
         // マイクの入力が一定以上ならストップに
-        print(self.micInput.level)
         if self.micInput.level > 0.01 && char.collision {
             char.stop()
             self.stopCount = 0
@@ -118,7 +112,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             char.headForCamera(sceneView: self.sceneView)
         }
         
-        if stopCount > 5 {
+        if self.stopCount > 5 {
             char.dance()
         }
     }
@@ -126,30 +120,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         print("didAdd");
-        DispatchQueue.main.async {
-            if let planeAnchor = anchor as? ARPlaneAnchor {
-                // 平面を表現するノードを追加する
-                let panelNode = PlaneNode(anchor: planeAnchor)
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            // 平面を表現するノードを追加する
+            let panelNode = PlaneNode(anchor: planeAnchor)
 
-                node.addChildNode(panelNode)
-                self.planeNodes.append(panelNode)
-            }
+            node.addChildNode(panelNode)
+            self.planeNodes.append(panelNode)
         }
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         print("didUpdate");
-        DispatchQueue.main.async {
-            if let planeAnchor = anchor as? ARPlaneAnchor, let planeNode = node.childNodes[0] as? PlaneNode {
-                // ノードの位置及び形状を修正する
-                planeNode.update(anchor: planeAnchor)
-            }
+        if let planeAnchor = anchor as? ARPlaneAnchor, let planeNode = node.childNodes[0] as? PlaneNode {
+            // ノードの位置及び形状を修正する
+            planeNode.update(anchor: planeAnchor)
         }
     }
     
     // MARK: - SCNPhysicsContactDelegate
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        guard let char = characterNode else {
+        guard let char = self.characterNode else {
             return
         }
         if char.collision {
@@ -160,15 +150,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         char.collision = true
         
         //        var planeNode: PlaneNode?
-        //        if (contact.nodeA is PlaneNode) {
+        //        if contact.nodeA is PlaneNode {
         //            planeNode = contact.nodeA as? PlaneNode
         //        }
         //
-        //        if (contact.nodeB is PlaneNode) {
+        //        if contact.nodeB is PlaneNode {
         //            planeNode = contact.nodeB as? PlaneNode
         //        }
         //
-        //        if (planeNode != nil) {
+        //        if planeNode != nil {
         //            let plane = planeNode!.geometry as! SCNPlane
         //            char.walk(planePosition: (planeNode?.position)!, width: plane.width, height: plane.height)
         //        }

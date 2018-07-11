@@ -15,7 +15,7 @@
 		71E8CF92206630B300A451AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71E8CF90206630B300A451AD /* Main.storyboard */; };
 		71E8CF94206630B300A451AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71E8CF93206630B300A451AD /* Assets.xcassets */; };
 		71E8CF97206630B300A451AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71E8CF95206630B300A451AD /* LaunchScreen.storyboard */; };
-		71E8CFA2206630B300A451AD /* ARTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8CFA1206630B300A451AD /* ARTestTests.swift */; };
+		71E8CFA2206630B300A451AD /* ARBearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8CFA1206630B300A451AD /* ARBearTests.swift */; };
 		71E8CFAD2067E27200A451AD /* PlaneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8CFAC2067E27200A451AD /* PlaneNode.swift */; };
 		71E8CFAF2067E44000A451AD /* CharcterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8CFAE2067E44000A451AD /* CharcterNode.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		28A729F520EBBE460098651A /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		28A729F720EBBE4D0098651A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		28D8FF7220F1EBDF00BCE4B0 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		71E8CF87206630B300A451AD /* ARTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E8CF87206630B300A451AD /* ARBear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARBear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E8CF8A206630B300A451AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71E8CF8C206630B300A451AD /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		71E8CF8E206630B300A451AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,8 +43,8 @@
 		71E8CF93206630B300A451AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71E8CF96206630B300A451AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71E8CF98206630B300A451AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71E8CF9D206630B300A451AD /* ARTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		71E8CFA1206630B300A451AD /* ARTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTestTests.swift; sourceTree = "<group>"; };
+		71E8CF9D206630B300A451AD /* ARBearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARBearTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E8CFA1206630B300A451AD /* ARBearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBearTests.swift; sourceTree = "<group>"; };
 		71E8CFA3206630B300A451AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71E8CFAC2067E27200A451AD /* PlaneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneNode.swift; sourceTree = "<group>"; };
 		71E8CFAE2067E44000A451AD /* CharcterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharcterNode.swift; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		71E8CF7E206630B300A451AD = {
 			isa = PBXGroup;
 			children = (
-				71E8CF89206630B300A451AD /* ARTest */,
-				71E8CFA0206630B300A451AD /* ARTestTests */,
+				71E8CF89206630B300A451AD /* ARBear */,
+				71E8CFA0206630B300A451AD /* ARBearTests */,
 				71E8CF88206630B300A451AD /* Products */,
 				28A729F420EBBE460098651A /* Frameworks */,
 			);
@@ -92,13 +92,13 @@
 		71E8CF88206630B300A451AD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				71E8CF87206630B300A451AD /* ARTest.app */,
-				71E8CF9D206630B300A451AD /* ARTestTests.xctest */,
+				71E8CF87206630B300A451AD /* ARBear.app */,
+				71E8CF9D206630B300A451AD /* ARBearTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		71E8CF89206630B300A451AD /* ARTest */ = {
+		71E8CF89206630B300A451AD /* ARBear */ = {
 			isa = PBXGroup;
 			children = (
 				71E8CF8A206630B300A451AD /* AppDelegate.swift */,
@@ -112,24 +112,24 @@
 				71E8CF95206630B300A451AD /* LaunchScreen.storyboard */,
 				71E8CF98206630B300A451AD /* Info.plist */,
 			);
-			path = ARTest;
+			path = ARBear;
 			sourceTree = "<group>";
 		};
-		71E8CFA0206630B300A451AD /* ARTestTests */ = {
+		71E8CFA0206630B300A451AD /* ARBearTests */ = {
 			isa = PBXGroup;
 			children = (
-				71E8CFA1206630B300A451AD /* ARTestTests.swift */,
+				71E8CFA1206630B300A451AD /* ARBearTests.swift */,
 				71E8CFA3206630B300A451AD /* Info.plist */,
 			);
-			path = ARTestTests;
+			path = ARBearTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		71E8CF86206630B300A451AD /* ARTest */ = {
+		71E8CF86206630B300A451AD /* ARBear */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 71E8CFA6206630B300A451AD /* Build configuration list for PBXNativeTarget "ARTest" */;
+			buildConfigurationList = 71E8CFA6206630B300A451AD /* Build configuration list for PBXNativeTarget "ARBear" */;
 			buildPhases = (
 				71E8CF83206630B300A451AD /* Sources */,
 				71E8CF84206630B300A451AD /* Frameworks */,
@@ -139,14 +139,14 @@
 			);
 			dependencies = (
 			);
-			name = ARTest;
+			name = ARBear;
 			productName = ARTest;
-			productReference = 71E8CF87206630B300A451AD /* ARTest.app */;
+			productReference = 71E8CF87206630B300A451AD /* ARBear.app */;
 			productType = "com.apple.product-type.application";
 		};
-		71E8CF9C206630B300A451AD /* ARTestTests */ = {
+		71E8CF9C206630B300A451AD /* ARBearTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 71E8CFA9206630B300A451AD /* Build configuration list for PBXNativeTarget "ARTestTests" */;
+			buildConfigurationList = 71E8CFA9206630B300A451AD /* Build configuration list for PBXNativeTarget "ARBearTests" */;
 			buildPhases = (
 				71E8CF99206630B300A451AD /* Sources */,
 				71E8CF9A206630B300A451AD /* Frameworks */,
@@ -157,9 +157,9 @@
 			dependencies = (
 				71E8CF9F206630B300A451AD /* PBXTargetDependency */,
 			);
-			name = ARTestTests;
+			name = ARBearTests;
 			productName = ARTestTests;
-			productReference = 71E8CF9D206630B300A451AD /* ARTestTests.xctest */;
+			productReference = 71E8CF9D206630B300A451AD /* ARBearTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +183,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 71E8CF82206630B300A451AD /* Build configuration list for PBXProject "ARTest" */;
+			buildConfigurationList = 71E8CF82206630B300A451AD /* Build configuration list for PBXProject "ARBear" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -196,8 +196,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				71E8CF86206630B300A451AD /* ARTest */,
-				71E8CF9C206630B300A451AD /* ARTestTests */,
+				71E8CF86206630B300A451AD /* ARBear */,
+				71E8CF9C206630B300A451AD /* ARBearTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,7 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71E8CFA2206630B300A451AD /* ARTestTests.swift in Sources */,
+				71E8CFA2206630B300A451AD /* ARBearTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +249,7 @@
 /* Begin PBXTargetDependency section */
 		71E8CF9F206630B300A451AD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 71E8CF86206630B300A451AD /* ARTest */;
+			target = 71E8CF86206630B300A451AD /* ARBear */;
 			targetProxy = 71E8CF9E206630B300A451AD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -387,9 +387,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NBLDA4FP49;
-				INFOPLIST_FILE = ARTest/Info.plist;
+				INFOPLIST_FILE = ARBear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.l-is-b.ARTest";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.l-is-b.ARBear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -402,9 +402,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NBLDA4FP49;
-				INFOPLIST_FILE = ARTest/Info.plist;
+				INFOPLIST_FILE = ARBear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.l-is-b.ARTest";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.l-is-b.ARBear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -423,7 +423,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARTest.app/ARTest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARBear.app/ARBear";
 			};
 			name = Debug;
 		};
@@ -439,14 +439,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARTest.app/ARTest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARBear.app/ARBear";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		71E8CF82206630B300A451AD /* Build configuration list for PBXProject "ARTest" */ = {
+		71E8CF82206630B300A451AD /* Build configuration list for PBXProject "ARBear" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				71E8CFA4206630B300A451AD /* Debug */,
@@ -455,7 +455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71E8CFA6206630B300A451AD /* Build configuration list for PBXNativeTarget "ARTest" */ = {
+		71E8CFA6206630B300A451AD /* Build configuration list for PBXNativeTarget "ARBear" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				71E8CFA7206630B300A451AD /* Debug */,
@@ -464,7 +464,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71E8CFA9206630B300A451AD /* Build configuration list for PBXNativeTarget "ARTestTests" */ = {
+		71E8CFA9206630B300A451AD /* Build configuration list for PBXNativeTarget "ARBearTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				71E8CFAA206630B300A451AD /* Debug */,

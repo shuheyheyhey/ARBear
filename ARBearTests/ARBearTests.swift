@@ -9,7 +9,7 @@
 import XCTest
 @testable import ARTest
 
-class ARTestTests: XCTestCase {
+class ARBearTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

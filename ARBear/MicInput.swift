@@ -79,7 +79,7 @@ class MicInput {
         status = AudioUnitSetProperty(au,
                              kAudioOutputUnitProperty_EnableIO,
                              kAudioUnitScope_Input,
-                             kInputBus,
+                             self.kInputBus,
                              &enable,
                              UInt32(MemoryLayout<UInt32>.size))
 
@@ -95,7 +95,7 @@ class MicInput {
         // マイクから取り出すデータフォーマット
         // 32bit float, linear PCM
         guard let fmt = AVAudioFormat(standardFormatWithSampleRate: 44100,
-                                      channels: UInt32(kNumberOfChannels)) else {
+                                      channels: UInt32(self.kNumberOfChannels)) else {
                                         return
         }
         
@@ -111,7 +111,7 @@ class MicInput {
         let status = AudioUnitSetProperty(au,
                              kAudioUnitProperty_StreamFormat,
                              kAudioUnitScope_Output,
-                             kInputBus,
+                             self.kInputBus,
                              fmt.streamDescription,
                              UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         
@@ -127,13 +127,13 @@ class MicInput {
         }
         // AudioUnit に録音コールバックを設定
         var inputCallbackStruct
-            = AURenderCallbackStruct(inputProc: recordingCallback,
+            = AURenderCallbackStruct(inputProc: self.recordingCallback,
                                      inputProcRefCon:
                 UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
         let status = AudioUnitSetProperty(au,
                              AudioUnitPropertyID(kAudioOutputUnitProperty_SetInputCallback),
                              AudioUnitScope(kAudioUnitScope_Global),
-                             kInputBus,
+                             self.kInputBus,
                              &inputCallbackStruct,
                              UInt32(MemoryLayout<AURenderCallbackStruct>.size))
         

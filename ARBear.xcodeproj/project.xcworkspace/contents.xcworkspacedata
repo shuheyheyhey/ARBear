@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ARTest.xcodeproj">
+      location = "self:/Users/shuhei.yukawa/Documents/Study/Swift/ARTest/ARBear.xcodeproj">
    </FileRef>
 </Workspace>
