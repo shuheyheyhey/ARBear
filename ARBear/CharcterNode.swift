@@ -60,7 +60,7 @@ class CharacterNode: SCNNode {
         // 物理特性追加
         self.addPhysics()
     }
-    
+
     func headForCamera(sceneView: SCNView) {
         // カメラ方向に向けるアニメーション
         if let camera = sceneView.pointOfView {
@@ -83,7 +83,7 @@ class CharacterNode: SCNNode {
             self.setNode(fileName: STOP_NODE)
         }
     }
-    
+
     func dance() {
         print("dance")
         if self.status == .stop || self.status == .walk {
@@ -107,7 +107,7 @@ class CharacterNode: SCNNode {
         self.physicsBody?.damping = 1
         self.physicsBody?.angularDamping = 1
         self.physicsBody?.friction = 1
-        
+
     }
 
     private func setNode(fileName: String) {
@@ -117,7 +117,7 @@ class CharacterNode: SCNNode {
             self.addChildNode(childNode)
         }
     }
-    
+
     /*
     func walk(planePosition: SCNVector3, width: CGFloat, height: CGFloat) {
         if status == .Stop || status == .Attack {
