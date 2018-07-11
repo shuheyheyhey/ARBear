@@ -119,7 +119,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
         
         if stopCount > 5 {
-            char.attack()
+            char.dance()
         }
     }
 
@@ -156,7 +156,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             // すでに初回衝突済み
             return
         }
-        char.attack()
+        char.dance()
         char.collision = true
         
         //        var planeNode: PlaneNode?

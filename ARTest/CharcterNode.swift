@@ -16,12 +16,12 @@ import ARKit
 enum Status: Int {
     case Walk = 1
     case Stop = 2
-    case Attack = 3
+    case Dancing = 3
 }
 
 let WALK_NODE = "art.scnassets/walk.dae";
-let STOP_NODE = "art.scnassets/idle.dae";
-let ATTACK_NODE = "art.scnassets/attack.dae";
+let STOP_NODE = "art.scnassets/Talking.dae";
+let DANCE_NODE = "art.scnassets/Dancing.dae";
 
 class CharacterNode: SCNNode {
 
@@ -68,12 +68,11 @@ class CharacterNode: SCNNode {
             let action = SCNAction.rotateTo(x: 0, y: CGFloat(camera.eulerAngles.y), z: 0, duration: 1)
             runAction(action)
         }
-        
     }
 
     func stop() {
         print("stop")
-        if (status == .Walk || status == .Attack) {
+        if (status == .Walk || status == .Dancing) {
             status = .Stop
             // node は全消し
             for node in childNodes {
@@ -85,16 +84,16 @@ class CharacterNode: SCNNode {
         }
     }
     
-    func attack() {
-        print("attack")
+    func dance() {
+        print("dance")
         if (status == .Stop || status == .Walk) {
-            status = .Attack
+            status = .Dancing
             // node は全消し
             for node in childNodes {
                 node.removeFromParentNode();
             }
-            // Attack 状態の node に差し替え
-            setNode(fileName: ATTACK_NODE);
+            // Dance 状態の node に差し替え
+            setNode(fileName: DANCE_NODE);
         }
     }
 
@@ -102,7 +101,7 @@ class CharacterNode: SCNNode {
         // 物理特性追加(node で追加するとうまく平面で止まってくれず・・・ひとまずキューブで対応)
         let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
         physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: cube, options: nil))
-        physicsBody?.categoryBitMask = 1
+        physicsBody?.categoryBitMask = 0
         physicsBody?.restitution = 0
         // 空気抵抗(ゆっくり落としたいので 1)
         physicsBody?.damping = 1
