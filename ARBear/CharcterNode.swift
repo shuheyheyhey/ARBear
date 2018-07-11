@@ -14,9 +14,9 @@ import SceneKit
 import ARKit
 
 enum Status: Int {
-    case Walk = 1
-    case Stop = 2
-    case Dancing = 3
+    case walk = 1
+    case stop = 2
+    case dancing = 3
 }
 
 let WALK_NODE = "art.scnassets/walk.dae"
@@ -30,7 +30,7 @@ class CharacterNode: SCNNode {
 
     fileprivate override init() {
         // 初期化時のステータスは Stop
-        self.status = .Stop
+        self.status = .stop
 
         super.init()
         self.name = "Character"
@@ -42,7 +42,7 @@ class CharacterNode: SCNNode {
 
     init(hitTestResult: ARHitTestResult) {
         // 初期化時のステータスは Stop
-        self.status = .Stop
+        self.status = .stop
 
         super.init()
 
@@ -72,8 +72,8 @@ class CharacterNode: SCNNode {
 
     func stop() {
         print("stop")
-        if self.status == .Walk || self.status == .Dancing {
-            self.status = .Stop
+        if self.status == .walk || self.status == .dancing {
+            self.status = .stop
             // node は全消し
             for node in self.childNodes {
                 node.removeFromParentNode()
@@ -86,8 +86,8 @@ class CharacterNode: SCNNode {
     
     func dance() {
         print("dance")
-        if self.status == .Stop || self.status == .Walk {
-            self.status = .Dancing
+        if self.status == .stop || self.status == .walk {
+            self.status = .dancing
             // node は全消し
             for node in self.childNodes {
                 node.removeFromParentNode()

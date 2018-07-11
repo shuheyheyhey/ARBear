@@ -106,7 +106,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
         
         // ストップの場合は常にカメラに向ける
-        if char.status == Status.Stop && char.collision {
+        if char.status == Status.stop && char.collision {
             self.stopCount += 1
             // カメラに向ける
             char.headForCamera(sceneView: self.sceneView)
