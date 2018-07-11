@@ -30,13 +30,13 @@ class MicInput {
             try self.setupCallback()
             
             guard let au = self.audioUnit else {
-                throw NSError(domain: "AudioError", code: 1, userInfo: nil);
+                throw NSError(domain: "AudioError", code: 1, userInfo: nil)
             }
             
             AudioUnitInitialize(au)
             AudioOutputUnitStart(au)
         } catch {
-            exit(-1);
+            exit(-1)
         }
     }
     
@@ -64,17 +64,17 @@ class MicInput {
         let component: AudioComponent! = AudioComponentFindNext(nil, &componentDesc)
         let status = AudioComponentInstanceNew(component, &self.audioUnit)
         if status != errSecSuccess {
-            throw NSError(domain: "AudioError", code: 2, userInfo: nil);
+            throw NSError(domain: "AudioError", code: 2, userInfo: nil)
         }
     }
     
     private func setUpMicrophone() throws {
         // RemoteIO のマイクを有効にする
         guard let au = self.audioUnit else {
-            throw NSError(domain: "AudioError", code: 3, userInfo: nil);
+            throw NSError(domain: "AudioError", code: 3, userInfo: nil)
         }
         
-        var status: OSStatus;
+        var status: OSStatus
         var enable: UInt32 = 1
         status = AudioUnitSetProperty(au,
                              kAudioOutputUnitProperty_EnableIO,
@@ -84,13 +84,13 @@ class MicInput {
                              UInt32(MemoryLayout<UInt32>.size))
 
         if status != errSecSuccess {
-            throw NSError(domain: "AudioError", code: 4, userInfo: nil);
+            throw NSError(domain: "AudioError", code: 4, userInfo: nil)
         }
     }
     
     private func setUpDataFormat() throws {
         guard let au = self.audioUnit else {
-            throw NSError(domain: "AudioError", code: 5, userInfo: nil);
+            throw NSError(domain: "AudioError", code: 5, userInfo: nil)
         }
         // マイクから取り出すデータフォーマット
         // 32bit float, linear PCM
@@ -116,14 +116,14 @@ class MicInput {
                              UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         
         if status != errSecSuccess {
-            throw NSError(domain: "AudioError", code: 6, userInfo: nil);
+            throw NSError(domain: "AudioError", code: 6, userInfo: nil)
         }
         
     }
     
     private func setupCallback() throws {
         guard let au = self.audioUnit else {
-            throw NSError(domain: "AudioError", code: 7, userInfo: nil);
+            throw NSError(domain: "AudioError", code: 7, userInfo: nil)
         }
         // AudioUnit に録音コールバックを設定
         var inputCallbackStruct
@@ -138,7 +138,7 @@ class MicInput {
                              UInt32(MemoryLayout<AURenderCallbackStruct>.size))
         
         if status != errSecSuccess {
-            throw NSError(domain: "Error", code: 8, userInfo: nil);
+            throw NSError(domain: "Error", code: 8, userInfo: nil)
         }
         
     }
@@ -165,7 +165,7 @@ class MicInput {
         let inputDataPtr = UnsafeMutableAudioBufferListPointer(&audioObject.audioBufferList!)
         let mBuffers: AudioBuffer = inputDataPtr[0]
         guard let bufferPointer = UnsafeMutableRawPointer(mBuffers.mData) else {
-            return -1;
+            return -1
         }
         let dataArray = bufferPointer.assumingMemoryBound(to: Float.self)
         // マイクから取得したデータからレベルを計算する

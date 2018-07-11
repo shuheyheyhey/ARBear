@@ -21,20 +21,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     private let micInput = MicInput()
     
-    private var stopCount = 0;
+    private var stopCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the view's delegate
         self.sceneView.delegate = self
-        self.sceneView.scene = SCNScene();
+        self.sceneView.scene = SCNScene()
 
-        self.sceneView.scene.physicsWorld.contactDelegate = self;
+        self.sceneView.scene.physicsWorld.contactDelegate = self
         
         self.sceneView.autoenablesDefaultLighting = true
 
-        self.registerGestureRecognizer();
+        self.registerGestureRecognizer()
         // Set the scene to the view
         //sceneView.scene = scene
         self.setUpMic()
@@ -119,7 +119,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
     // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        print("didAdd");
+        print("didAdd")
         if let planeAnchor = anchor as? ARPlaneAnchor {
             // 平面を表現するノードを追加する
             let panelNode = PlaneNode(anchor: planeAnchor)
@@ -130,7 +130,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        print("didUpdate");
+        print("didUpdate")
         if let planeAnchor = anchor as? ARPlaneAnchor, let planeNode = node.childNodes[0] as? PlaneNode {
             // ノードの位置及び形状を修正する
             planeNode.update(anchor: planeAnchor)
