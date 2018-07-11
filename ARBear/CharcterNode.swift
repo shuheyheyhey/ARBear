@@ -7,16 +7,13 @@
 //
 
 import Foundation
-
-import Foundation
-import UIKit
 import SceneKit
 import ARKit
 
 enum Status: Int {
-    case Walk = 1
-    case Stop = 2
-    case Dancing = 3
+    case walk = 1
+    case stop = 2
+    case dancing = 3
 }
 
 let WALK_NODE = "art.scnassets/walk.dae"
@@ -30,7 +27,7 @@ class CharacterNode: SCNNode {
 
     fileprivate override init() {
         // 初期化時のステータスは Stop
-        self.status = .Stop
+        self.status = .stop
 
         super.init()
         self.name = "Character"
@@ -42,7 +39,7 @@ class CharacterNode: SCNNode {
 
     init(hitTestResult: ARHitTestResult) {
         // 初期化時のステータスは Stop
-        self.status = .Stop
+        self.status = .stop
 
         super.init()
 
@@ -60,7 +57,7 @@ class CharacterNode: SCNNode {
         // 物理特性追加
         self.addPhysics()
     }
-    
+
     func headForCamera(sceneView: SCNView) {
         // カメラ方向に向けるアニメーション
         if let camera = sceneView.pointOfView {
@@ -72,8 +69,8 @@ class CharacterNode: SCNNode {
 
     func stop() {
         print("stop")
-        if self.status == .Walk || self.status == .Dancing {
-            self.status = .Stop
+        if self.status == .walk || self.status == .dancing {
+            self.status = .stop
             // node は全消し
             for node in self.childNodes {
                 node.removeFromParentNode()
@@ -83,11 +80,11 @@ class CharacterNode: SCNNode {
             self.setNode(fileName: STOP_NODE)
         }
     }
-    
+
     func dance() {
         print("dance")
-        if self.status == .Stop || self.status == .Walk {
-            self.status = .Dancing
+        if self.status == .stop || self.status == .walk {
+            self.status = .dancing
             // node は全消し
             for node in self.childNodes {
                 node.removeFromParentNode()
@@ -107,7 +104,7 @@ class CharacterNode: SCNNode {
         self.physicsBody?.damping = 1
         self.physicsBody?.angularDamping = 1
         self.physicsBody?.friction = 1
-        
+
     }
 
     private func setNode(fileName: String) {
@@ -117,7 +114,7 @@ class CharacterNode: SCNNode {
             self.addChildNode(childNode)
         }
     }
-    
+
     /*
     func walk(planePosition: SCNVector3, width: CGFloat, height: CGFloat) {
         if status == .Stop || status == .Attack {
