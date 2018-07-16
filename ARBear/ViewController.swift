@@ -122,36 +122,42 @@ class ViewController: UIViewController {
 extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         print("didAdd")
-        if let planeAnchor = anchor as? ARPlaneAnchor {
-            // 平面を表現するノードを追加する
-            let panelNode = PlaneNode(anchor: planeAnchor)
+        DispatchQueue.main.async(execute: {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
+                // 平面を表現するノードを追加する
+                let panelNode = PlaneNode(anchor: planeAnchor)
 
-            node.addChildNode(panelNode)
-            self.planeNodes.append(panelNode)
-        }
+                node.addChildNode(panelNode)
+                self.planeNodes.append(panelNode)
+            }
+        })
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         print("didUpdate")
-        if let planeAnchor = anchor as? ARPlaneAnchor, let planeNode = node.childNodes[0] as? PlaneNode {
-            // ノードの位置及び形状を修正する
-            planeNode.update(anchor: planeAnchor)
-        }
+        DispatchQueue.main.async(execute: {
+            if let planeAnchor = anchor as? ARPlaneAnchor, let planeNode = node.childNodes[0] as? PlaneNode {
+                // ノードの位置及び形状を修正する
+                planeNode.update(anchor: planeAnchor)
+            }
+        })
     }
 }
 
 // MARK: - SCNPhysicsContactDelegate
 extension ViewController: SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        guard let char = self.characterNode else {
-            return
-        }
-        if char.collision {
-            // すでに初回衝突済み
-            return
-        }
-        char.dance()
-        char.collision = true
+        DispatchQueue.main.async(execute: {
+            guard let char = self.characterNode else {
+                return
+            }
+            if char.collision {
+                // すでに初回衝突済み
+                return
+            }
+            char.dance()
+            char.collision = true
+        })
 
         //        var planeNode: PlaneNode?
         //        if contact.nodeA is PlaneNode {
